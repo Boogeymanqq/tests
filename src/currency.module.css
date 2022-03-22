@@ -1,0 +1,27 @@
+.currency__container {
+  max-width: 850px;
+  border: 2px solid #000000;
+  margin: auto;
+}
+
+.currency__title {
+  padding: 10px 0;
+  list-style: none;
+  display: flex;
+  border-top: 1px solid #808080;
+  border-bottom: 1px solid #808080;
+  justify-content: space-around;
+}
+
+.currency__list {
+  padding: 10px 90px 10px 0;
+  list-style: none;
+  display: flex;
+  border-top: 1px solid #808080;
+  border-bottom: 1px solid #808080;
+  justify-content: space-around;
+}
+
+.currency__item {
+  cursor: pointer;
+}
