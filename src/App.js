@@ -4,7 +4,6 @@ import s from "./currency.module.css";
 
 export const App = () => {
   const [currency, setCurrency] = useState([]);
-  const [lastCurrency, setLastCurrency] = useState(false);
 
   useEffect(() => {
     async function apiCurs() {
@@ -13,6 +12,10 @@ export const App = () => {
         const response = await fetch(url);
         const data = await response.json();
         const dataArr = Object.values(data.Valute);
+        const dataNewArr = dataArr.map((todo) => ({
+          ...todo,
+          checked: false,
+        }));
         setCurrency(dataArr);
       } catch (e) {
         console.log(e);
@@ -25,14 +28,6 @@ export const App = () => {
     ReactTooltip.rebuild();
   });
 
-  // function addString(name) {
-  //   const newString = currency.concat(); // копия массива
-  //   // const newString = currency.filter((elem) => elem.ID === ID);
-  //   const secondString = newString.find((elem) => elem.Name === name);
-  //   // secondString.marked = true;
-  //   setCurrency(secondString);
-  // }
-
   return (
     <div className={s.currency__container}>
       <ul className={s.currency__title}>
@@ -41,13 +36,7 @@ export const App = () => {
         <li>Разница(%) с предыдущим днём</li>
       </ul>
       {currency.map((elem, index) => (
-        <ul
-          // onClick={(index) => setLastCurrency(!lastCurrency)}
-          // onClick={() => addString(elem.Name)}
-          className={s.currency__list}
-          key={index}
-        >
-          {lastCurrency && <li>{elem.CharCode}</li>}
+        <ul className={s.currency__list} key={index}>
           <li data-tip={elem.Name} data-for="test" className={s.currency__item}>
             {elem.CharCode}
           </li>
